@@ -1,0 +1,18 @@
+    <div class="header-content">
+        <a href="/">
+            <img src="{{ url_for('static', filename='Merch Store small.png') }}" alt="MStore">
+        </a>
+        <a href="/">Главная</a>
+        <a href="/about/"		>О нас</a>
+        <a href="/contacts/"	>Контакты</a>
+        <a href="/goods/"		>Товары</a>
+        <form action="{{ url_for('goods_search') }}" method="GET" class="search-form">
+            <input name="q" class="item" placeholder="Поиск..." type="text" value="{{ request.args.get('q', '') }}">
+            <button type="submit" class="image-button">
+                <img alt="search" src="{{ url_for('static', filename='magnifyingglass.png') }}">
+            </button>
+        </form>
+        <button class="image-button">
+            <img alt="basket" src="{{ url_for('static', filename='shopping cart.png') }}" width="32" height="32">
+        </button>
+    </div>

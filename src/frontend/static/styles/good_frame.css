@@ -1,0 +1,187 @@
+.data-grid-block .data-grid > div{
+	box-shadow: 1px 1px 10px #111;
+}
+@media (hover: hover) and (pointer: fine) {
+	.data-grid-block .data-grid > div:hover{
+		box-shadow: 1px 1px 15px #111;
+	}
+}
+/* Убираем рамку из старого стиля */
+.data-grid > div:not(img) {
+	border: 0;
+}
+
+/* Ячейка товара */
+.data-grid > div:not(img){
+	border: 1px solid #ccc;
+}
+.data-grid img{
+	border: 0;
+}
+
+
+/* Стиль для золотой рамки */
+.gold-border{
+	border: solid var(--accent-gold);
+	z-index: 2
+}
+
+/*Стиль для описания элементов*/
+.card-description{
+	margin-top: auto; /* Прижимает описание к низу */
+	padding: 10px;
+}
+
+.card h1, h2, h3, h4, h5, h6{
+	padding-left: 0;
+}
+.card .card:hover{
+	transition: none;
+	transform: none;
+	box-shadow: none;
+}
+@media (hover: hover) and (pointer: fine) {	
+	.card:hover{
+		transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+		transform: translateY(-5px);
+		box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+	}
+}
+
+
+
+/*Стиль для карточек-ссылок*/
+.data-grid > a.card {
+	display: block;
+	text-decoration: none;
+	color: inherit;
+}
+
+.card {
+	cursor: pointer; /* Изменяем курсор для визуального обозначения */
+}
+/* Очищенные и оптимизированные стили */
+.good-card {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	width: 100%;
+	background: rgba(255, 255, 255, 0.1);
+	border-radius: 8px;
+	overflow: hidden;
+	box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+	transition: transform 0.3s ease;
+	text-decoration: none; /* Убираем подчёркивание */
+	color: #e0e0e0; /* Цвет текста из палитры root */
+}
+
+@media (hover: hover) and (pointer: fine) {	
+	.good-card:hover {
+		transform: translateY(-5px);
+		background: rgba(255, 255, 255, 0.15);
+	}
+}
+
+/* Контейнер для изображения */
+.image-container {
+	flex: 0 0 auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 200px;
+	padding: 10px;
+	background: color-mix(in srgb, var(--secondary-green) 50%, transparent);
+}
+
+.image-container img {
+	max-width: 100%;
+	max-height: 100%;
+	object-fit: contain;
+}
+
+/* Контент карточки */
+.card-content {
+	flex: 1;
+	padding: 15px;
+	display: flex;
+	flex-direction: column;
+}
+
+.card-title {
+	margin: 5px 0;
+	font-size: 1.1rem;
+	font-weight: bold;
+}
+
+.card-price {
+	color: var(--accent-gold);
+	font-weight: bold;
+	margin: 5px 0;
+}
+.card-desc {
+	font-size: 0.9rem;
+	margin: 5px 0;
+	color: #ccc;
+	overflow-wrap: break-word;
+}
+.card-bottom {
+	margin-top: auto; /* Прижимаем к низу */
+	padding-top: 10px;
+	justify-content: end;
+}
+.card-manufacturer,
+.card-date {
+	font-size: 0.9rem;
+	margin: 3px 0;
+	color: #aaa;
+}
+
+/* Адаптивные колонки */
+.row > div {
+	margin-bottom: 20px;
+	display: flex;
+}
+
+
+@media screen and (width<1200px){
+	.col-md-3 {
+		flex: 0 0 25%;
+		max-width: 25%;
+	}
+	.image-container {
+		height: 170px;
+	}
+}
+
+
+.secondary-info p{
+	overflow-wrap: break-word
+}
+@media screen and (width<500px){
+	/*.secondary-info {
+		visibility: collapse;
+		border-collapse: collapse;
+	}*/
+	.card-desc{
+		overflow-wrap: normal;
+	}
+}
+
+
+
+
+
+
+.col-lg-2 {
+	flex: 0 0 16.666%;
+	max-width: 16.666%;
+}
+
+
+
+
+.good-card, 
+.good-card:hover, 
+.good-card:focus {
+	text-decoration: none !important;
+}

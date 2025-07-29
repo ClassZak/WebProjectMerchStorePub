@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="{{url_for('static', filename='styles/style.css')}}">
+		<!--link rel="stylesheet" href="{{url_for('static', filename='styles/good_frame.css')}}"-->
+		<link rel="stylesheet" href="{{url_for('static', filename='styles/admin_panel.css')}}">
+		<link rel="stylesheet" href="{{url_for('static', filename='styles/modal_form.css')}}">
+		<link rel="stylesheet" href="{{url_for('static', filename='styles/error_window.css')}}">
+		<link rel="stylesheet" href="{{url_for('static', filename='styles/shadow_card.css')}}">
+		<link rel="icon" href="{{url_for('static', filename='favicon.ico')}}" type="image/x-icon">
+		<script src="{{url_for('static',filename='scripts/admin_scripts.js')}}"></script>
+		<script src="{{url_for('static',filename='scripts/base_scripts/base_loading.js')}}"></script>
+		<script src="{{url_for('static',filename='scripts/base_scripts/escape.js')}}"></script>
+		<script src="{{url_for('static',filename='scripts/error_message.js')}}"></script>
+		<!--Для очистки данных от вредоносного кода-->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.6/purify.min.js"></script>
+		<meta name="csrf-token" content="{{ csrf_token() }}">
+
+		<link rel="stylesheet" href="https://unpkg.com/flexboxgrid2@7.2.0/flexboxgrid2.css">
+		
+		<title>Панель админа</title>
+	</head>
+	<body>
+		<header>
+			<div>
+				<h1>Панель администратора</h1>
+			</div>
+			<div class="header-content">
+				<a href="/">
+					<img src="{{url_for('static',filename='Merch Store small.png')}}" alt="MStore">
+				</a>
+				<a href="/">Главная</a>
+				<a href="/about/"		target="_blank">О нас</a>
+				<a href="/contacts/"	target="_blank">Контакты</a>
+				<a href="/goods/"		target="_blank">Товары</a>
+				<input class="item" placeholder="Поиск..." type="text">
+				<button class="image-button">
+					<img alt="search" src="{{url_for('static', filename='magnifyingglass.png')}}">
+				</button>
+				<button class="image-button">
+					<img alt="basket" src="{{url_for('static', filename='shopping cart.png')}}" width="32" height="32">
+				</button>
+			</div>
+		</header>
+		<main class="content-wrapper" style="margin-top: 80px;">
+			<!--Производители-->
+			<main class="content-wrapper data-grid-block">
+				<h1>Производители</h1>
+				<div class="gold-border">
+					<div class="data-grid manufacturer-grid" id="manufacturers_grid">
+					</div>
+					<button
+						onclick="openModal('create_manufacturers_form_overlay')" 
+						class="square-btn add-btn"><strong>+</strong>
+					</button>
+				</div>
+			</main>
+			<!--Товары-->
+			<main class="content-wrapper data-grid-block">
+				<h1>Товары</h1>
+				<div class="gold-border">
+					<div class="data-grid manufacturer-grid" id="goods_grid">
+					</div>
+					<button
+						onclick="openModal('create_goods_form_overlay')"
+						class="square-btn add-btn"><strong>+</strong>
+					</button>
+				</div>
+			</main>
+		</main>
+
+
+
+
+
+		<!--Формы для таблиц-->
+		<!--Формы для производителей-->
+		<div class="overlay" id="create_manufacturers_form_overlay">
+			<div class="modal">
+				<h1>Новый производитель</h1>
+				<form action="/api/manufacturers/" method="post" class="modal-form" id="create_manufacturers_form">
+					<input type="text" name="name" placeholder="Имя производителя" required>
+					<div class="form-buttons">
+						<button type="submit">Добавить</button>
+						<button type="button" onclick="closeModal('create_manufacturers_form_overlay')">Отмена</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="overlay" id="edit_manufacturers_form_overlay">
+			<div class="modal">
+				<h1>Редактирование данных производителя</h1>
+				<form action="/api/manufacturers/" method="put" class="modal-form" id="edit_manufacturers_form" element-data-id="0">
+					<input type="text" name="name" placeholder="Имя производителя" required>
+					<div class="form-buttons">
+						<button type="submit">Изменить</button>
+						<button type="button" onclick="closeModal('edit_manufacturers_form_overlay')">Отмена</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="overlay" id="delete_manufacturers_form_overlay">
+			<div class="modal" element-data-id="">
+				<h1 id="delete_manufacturers_confirm_message">Вы уверены, что хотите удалить производителя?</h1>
+				<div class="form-buttons">
+					<button onclick="handleDeleteManufacturerConfirm()">Удалить</button>
+					<button onclick="closeModal('delete_manufacturers_form_overlay')">Отмена</button>
+				</div>
+			</div>
+		</div>
+
+
+		<!--Формы для товаров-->
+		<div class="overlay" id="create_goods_form_overlay">
+			<div class="modal">
+				<h1>Новый товар</h1>
+				<form action="/api/goods/" method="post" class="modal-form" id="create_goods_form" enctype="multipart/form-data">
+					<input type="text"		name="name"				placeholder="Название товара"	required>
+					<input type="text"		name="description"		placeholder="Описание товара"	required>
+
+					<!--Для загрузки изображения-->
+					<input type="file" name="image" accept="image/*" required>
+					
+					
+					<input type="number"	name="price"			placeholder="Цена товара"		required	step="any">
+					<input type="date"		name="appearance_date"	required>
+					<select 
+						id="manufacturer_select_for_good_create" 
+						name ="id_manufacturer" 
+						placeholder="Выберете производителя" 
+						required>
+					</select>
+					<div class="form-buttons">
+						<button type="submit">Добавить</button>
+						<button type="button" onclick="closeModal('create_goods_form_overlay')">Отмена</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="overlay" id="edit_goods_form_overlay">
+			<div class="modal">
+				<h1>Редактирование данных товара</h1>
+				<form action="/api/goods/" method="put" class="modal-form" id="edit_goods_form" element-data-id="0">
+					<input type="text"		name="name"				placeholder="Название товара"	required>
+					<input type="text"		name="description"		placeholder="Описание товара"	required>
+
+					<!--Для загрузки изображения-->
+					<input type="file" name="image" accept="image/*" required>
+
+					
+					<input type="number"	name="price"			placeholder="Цена товара" 		required	step="any">
+					<input type="date"		name="appearance_date"	required>
+					<select 
+						id="manufacturer_select_for_good_update" 
+						name ="id_manufacturer" 
+						placeholder="Выберете производителя" 
+						required>
+					</select>
+					<div class="form-buttons">
+						<button type="submit">Изменить</button>
+						<button type="button" onclick="closeModal('edit_goods_form_overlay')">Отмена</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="overlay" id="delete_goods_form_overlay">
+			<div class="modal" element-data-id="">
+				<h1 id="delete_goods_confirm_message">Вы уверены, что хотите удалить товар?</h1>
+				<div class="form-buttons">
+					<button onclick="handleDeleteGoodConfirm()">Удалить</button>
+					<button onclick="closeModal('delete_goods_form_overlay')">Отмена</button>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

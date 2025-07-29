@@ -1,0 +1,180 @@
+/*Основной контент*/
+.content-wrapper {
+	height: auto;
+	margin: 0 auto;
+	flex: 1;
+	padding: 4em 0;
+	background-color: var(--primary-accent);
+}
+.content-wrapper > .content-wrapper{
+	width: 100%;
+	flex: 0;
+	padding: 0 0 0 0;
+}
+.content-wrapper > *{
+	margin: 0px;
+}
+
+h1,h2,h3,h4,h5,h6 {
+	font-family: Montserrat, sans-serif;
+}
+h2,h3,h4,h5,h6 {
+	padding-left: 0px;
+}
+h1{
+	text-align: center;
+}
+
+.content-wrapper > h2,.content-wrapper > h3,.content-wrapper > h4,.content-wrapper > h5,.content-wrapper > h6 {
+	margin-bottom:0px;
+}
+.content-wrapper > p{
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+
+/* Новые стили*/
+/* Кнопки формы*/
+.form-buttons {
+	display: flex;
+	gap: 10px;
+	margin-top: 15px;
+}
+
+
+
+
+/* Стиль для производителей */
+/* TODO: сделать стиль общим*/
+.manufacturer-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	gap: 16px; /* Расстояние между изображениями */
+	padding: 16px;
+}
+@media screen and (width< 300px) {
+	.manufacturer-grid {
+		grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+	}
+}
+@media screen and (width< 170px) {
+	.manufacturer-grid {
+		grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+	}
+}
+/* TODO: сделать стиль общим*/
+.manufacturer-grid > .card {
+	width: auto;
+	height: auto;
+	aspect-ratio: auto; /* Квадратные ячейки (опционально) */
+}
+/* TODO: сделать стиль общим*/
+.manufacturer-grid > .card > div{
+	padding: 16px;
+}
+.manufacturer-grid *{
+	overflow-wrap: break-word;
+	word-break: break-word;
+}
+
+
+.card {
+	display: flex;
+	flex-direction: column;
+	height: 100%; /* Занимает всю высоту родителя */
+}
+.card-content {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+	min-height: 0; /* Занимает доступное пространство, прижимая кнопки вниз */
+}
+
+.card-button-div {
+	margin-top: auto; /* Прижимает кнопки к нижнему краю */
+	display: flex;
+	gap: 8px;
+	justify-content: flex-end;
+}
+@media screen and (width< 300px){
+	.card-button-div{
+		gap: 0;
+		margin: 0;
+	}
+}
+
+
+
+
+
+/* Кнопки внутри карточки объекта */
+.data-grid div .square-btn{
+	width:	1.4em;
+	height:	1.4em;
+	min-width:	20px;
+	min-height:	20px;
+	border-radius: 5px;
+	font-size: x-large;
+}
+@media (max-width: 400px) {
+	.data-grid div .square-btn {
+		width:	1em;
+		height:	1em;
+		min-width:	1.4em;
+		min-height:	1.4em;
+		border-radius: 10px;
+	}
+}
+
+@media (max-width: 300px) {
+	.data-grid div .square-btn {
+		font-size: 1rem;
+		border-radius: 3px;
+	}
+}
+/* Кнопка добавления */
+.add-btn{
+	font-size: xx-large;
+}
+@media (width < 300px){
+	.add-btn{
+		font-size: medium;
+	}
+}
+
+/**/
+
+/*Стиль для фото на карточке*/
+.one-image{
+	flex-shrink: 0; /* Предотвращает сжатие изображения */
+    text-align: center; /* Центрирование изображения */
+    padding: 10px;
+}
+.one-image > img{
+	width:	auto;
+	height:	auto;
+	max-width:	200px;
+	max-height:	200px;
+	object-fit: contain;
+}
+.card-content > .one-image > img{
+	object-fit: contain; /* Сохраняет пропорции */
+	display: block;
+}
+.card-content > .one-image > img{
+	display: grid;
+	place-items: center; /* Автоматическое центрирование */
+	overflow: hidden;
+}
+
+@media (max-width: 400px) {
+    .card-description {
+        padding: 5px;
+        font-size: 0.9em;
+    }
+    
+    .one-image img {
+        max-height: 150px;
+    }
+}

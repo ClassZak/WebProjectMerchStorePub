@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<!-- ... существующий код ... -->
+	</head>
+	<body>
+		<header>
+			<form action="{{ url_for('goods_search') }}" method="GET" class="search-form">
+				<input name="q" class="search-input" 
+				placeholder="Поиск товаров..." 
+				type="text"
+				value="{{ request.args.get('q', '') }}">
+				<button type="submit" class="search-button">
+				<img alt="Поиск" src="{{url_for('static', filename='magnifyingglass.png')}}">
+				</button>
+			</form>
+		</header>
+
+		<main>
+			{% block content %}{% endblock %}
+		</main>
+
+		<footer>
+			<h2>Контакты</h2>
+			<div class="social">
+				<a href="https://github.com/ClassZak" target="_blank">ClassZak</a>
+			</div>
+			<p>&copy; 2025 MStore. Все права защищены.</p>
+			
+			<!-- Описание проекта -->
+			<h2>Описание проекта</h2>
+			<div class="contact">
+				<p>Тема: <strong>"Магазин мерчевой продукции"</strong></p>
+				<p>Версия: <strong>0.0.1.a</strong></p>
+			</div>
+			<h3>Список изменений</h3>
+			
+			<ul style="margin-left: 20px;">
+				<li>Админ панель
+					<ol>
+						<li>Таблица производителей
+							<ul>
+								<li>минимальные размеры для карточки</li>
+								<li>кнопка добавить	(+)</li>
+								<li>кнопка удалить	(🗑)</li>
+								<li>кнопка изменить	(✎)</li>
+							</ul>
+						</li>
+						<li>Таблица производителей
+							<ul>
+								<li>CRUD операции</li>
+								<li>пофикшенные размеры изображения</li>
+							</ul>
+						</li>
+					</ol>
+				</li>
+			</ul>
+		</footer>
+	</body>
+</html>
