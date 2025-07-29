@@ -5,13 +5,13 @@ MStore - это учебный проект онлайн магазина мер
 Данный проект разрабатывается при помощи mysql 8.0.42 в python 3.12 через mysql-connector-python       9.3.0 и при помощи фреймворка Flask 3.1.0 и библиотеки Flask-WTF 1.2.2. 
 
 ## 🖼️ Внешний вид сайта
-![Image alt](https://github.com/ClassZak/WebProjectMerchStore/blob/master/screenshot1.png)
-![Image alt](https://github.com/ClassZak/WebProjectMerchStore/blob/master/screenshot2.png)
-![Image alt](https://github.com/ClassZak/WebProjectMerchStore/blob/master/screenshot3.png)
+![Image alt](https://github.com/ClassZak/WebProjectMerchStorePub/blob/master/screenshot1.png)
+![Image alt](https://github.com/ClassZak/WebProjectMerchStorePub/blob/master/screenshot2.png)
+![Image alt](https://github.com/ClassZak/WebProjectMerchStorePub/blob/master/screenshot3.png)
 
 ### ❌ Пример появления сообщения об ошибке
 
-![Image alt](https://github.com/ClassZak/WebProjectMerchStore/blob/master/screenshot4.png)
+![Image alt](https://github.com/ClassZak/WebProjectMerchStorePub/blob/master/screenshot4.png)
 
 
 ## 🛠 Запуск сайта
@@ -19,8 +19,8 @@ MStore - это учебный проект онлайн магазина мер
 Для запуска необходимо выполнить следующие действия:
 1) Склонировать репозитрий 
 ```bash
-git clone https://github.com/ClassZak/WebProjectMerchStore.git
-cd WebProjectMerchStore
+git clone https://github.com/ClassZak/WebProjectMerchStorePub.git
+cd WebProjectMerchStorePub
 ```
 2) Установить разрешение на запуск скриптов
 ```bash
@@ -67,7 +67,7 @@ EXIT;
 ```
 - Выполнить скрипт создания БД:
 ```sql
-SOURCE /root/repositories/WebProjectMerchStore/DBCrearionScript.sql
+SOURCE /root/repositories/WebProjectMerchStorePub/DBCrearionScript.sql
 ```
 
 8) Запустить проект
