@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flexboxgrid2@7.2.1/flexboxgrid2.min.css">
+
+		<link rel="stylesheet" href="{{url_for('static', filename='styles/style.css')}}">
+		<link rel="stylesheet" href="{{url_for('static', filename='styles/good_frame.css')}}">
+		<link rel="stylesheet" href="{{url_for('static', filename='styles/modal_form.css')}}">
+		<link rel="stylesheet" href="{{url_for('static', filename='styles/error_window.css')}}">
+		<link rel="icon" href="{{url_for('static', filename='favicon.ico')}}" type="image/x-icon">
+		<script src="{{url_for('static',filename='scripts/error_message.js')}}"></script>
+		<script src="{{url_for('static',filename='scripts/base_scripts/escape.js')}}"></script>
+		<script src="{{url_for('static',filename='scripts/goods_scripts.js')}}"></script>
+		<title>MStore — О нас</title>
+	</head>
+	<body>
+		<header>
+			{% include 'parts/header_content.html' %}
+		</header>
+		<main class="content-wrapper data-grid-block">
+			<h1>О нас</h1>
+			<p>	Сайт MStore представляет собой онлайн-магазин мерча.	<br>Здесь можно приобрести различные сувениры от множества производителей, в том числе и от любимых блоггеров.	<br>	Весь ассортимент товаров пополняется на нашем складе. При заказе товара мы возьмём его со склада и доставим вам. </p>
+			<p>	Для заявки на продажу вашей продукции на данной площадке необходимо связяться с нами для дальнейшего сотрудничества.</p>
+			<p>	<a href="/contacts/" class="in-text">Вся контактная информация</a>.</p>
+		</main>
+		<footer>
+			{% include 'parts/footer_content.html' %}
+		</footer>
+	</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flexboxgrid2@7.2.1/flexboxgrid2.min.css">
+		<link rel="stylesheet" href="{{url_for('static', filename='styles/style.css')}}">
+		<link rel="stylesheet" href="{{url_for('static', filename='styles/modal_form.css')}}">
+		<link rel="stylesheet" href="{{url_for('static', filename='styles/error_window.css')}}">
+		<link rel="stylesheet" href="{{url_for('static', filename='styles/shadow_card.css')}}">
+		<link rel="stylesheet" href="{{url_for('static', filename='styles/good.css')}}">
+		<link rel="icon" href="{{url_for('static', filename='favicon.ico')}}" type="image/x-icon">
+		<script src="{{url_for('static',filename='scripts/error_message.js')}}"></script>
+		<script src="{{url_for('static',filename='scripts/base_scripts/escape.js')}}"></script>
+		<script src="{{url_for('static',filename='scripts/goods_scripts.js')}}"></script>
+		<script src="{{url_for('static',filename='scripts/good_script.js')}}"></script>
+		<link rel="stylesheet" href="{{url_for('static', filename='styles/good_style.css')}}">
+		<title>{{ good.name }}</title>
+	</head>
+	<body>
+		<header>
+			{% include 'parts/header_content.html' %}
+		</header>
+		<main class="content-wrapper data-grid-block">
+			<h1>{{ good.name }}</h1>
+			<div class="good-container" style="margin: 0; padding: 10px;">
+				<div class="row">
+					<!-- Блок с изображением -->
+					<div class="col-xs-12 col-md-6 col-sm-6">
+						<div class="image-block gold-border">
+							<img src="data:image/jpeg;base64,{{ good.image[2:-1] }}" alt="{{ good.name }}">
+						</div>
+					</div>
+					
+					<!-- Блок с информацией и формой -->
+					<div class="col-xs-12 col-md-6 col-sm-6">
+						<div class="info-block">
+							<p class="card-desc">{{ good.description }}</p>
+							<!--Отрендерится при загрузке DOM-->
+							<p class="card-title formatted-price card-price" data-price="{{ good.price }}"></p>
+							<p class="card-manufacturer">Производитель: {{ good.manufacturer }}</p>
+							<p class="card-date">Дата появления в ассортименте: <em>{{ good.appearance_date }}</em></p>
+							
+							<!-- Форма добавления в корзину -->
+							<form class="cart-form" action="/add_to_cart" method="post">
+								<input type="hidden" name="good_id" value="{{ good.id }}">
+								<label for="quantity">Количество:</label>
+								<input type="number" id="quantity" name="quantity" min="1" value="1">
+								<button type="submit" class="image-button shadow-card">
+									<img alt="В корзину" src="/static/shopping cart.png" width="32" height="32"> 
+								</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+		<footer>
+			{% include 'parts/footer_content.html' %}
+		</footer>
+	</body>
+</html>

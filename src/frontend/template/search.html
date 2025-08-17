@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="{{url_for('static', filename='styles/style.css')}}">
+	<link rel="stylesheet" href="{{url_for('static', filename='styles/good_frame.css')}}">
+	<link rel="stylesheet" href="{{url_for('static', filename='styles/modal_form.css')}}">
+	<link rel="stylesheet" href="{{url_for('static', filename='styles/error_window.css')}}">
+	<link rel="stylesheet" href="{{url_for('static', filename='styles/shadow_card.css')}}">
+	<link rel="icon" href="{{url_for('static', filename='favicon.ico')}}" type="image/x-icon">
+	<script src="{{url_for('static',filename='scripts/error_message.js')}}"></script>
+	<script src="{{url_for('static',filename='scripts/base_scripts/escape.js')}}"></script>
+	<script src="{{url_for('static',filename='scripts/goods_scripts.js')}}"></script>
+
+	<link rel="stylesheet" href="https://unpkg.com/flexboxgrid2@7.2.0/flexboxgrid2.css">
+	
+	<title>MStore — Поиск</title>
+</head>
+<script>
+	var goodsIdsToLoad = {{ goods_ids | tojson }};
+</script>
+<body>
+	<header>
+		{% include 'parts/header_content.html' %}
+	</header>
+	<main class="content-wrapper">
+		<h1>Результаты поиска по запросу "{{ query }}":</h1>
+		<div class="row" id="goods_grid" style="padding: 10px;"></div>
+	</main>
+	<footer>
+		{% include 'parts/footer_content.html' %}
+	</footer>
+	<script>
+		document.addEventListener('DOMContentLoaded', async function() {
+			setTimeout(async function(){
+				// Загружаем производителей
+				await loadManufacturersToArray();
+				if(goodsIdsToLoad.length > 0) {
+					await loadGoodsByIds('goods_grid', goodsIdsToLoad);
+					createGoodsCards('goods_grid')
+				} else {
+					document.getElementById('goods_grid').innerHTML = `
+					<div class="no-results shadow-card">
+						<p>По вашему запросу "{{ query }}" ничего не найдено</p>
+						<a href="{{ url_for('render_goods') }}" class="btn-browse shadow-card">Посмотреть все товары</a>
+					</div>
+					`;
+				}
+			},500)
+		});
+	</script>
+</body>
+</html>

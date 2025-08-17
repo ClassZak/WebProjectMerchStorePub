@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flexboxgrid2@7.2.1/flexboxgrid2.min.css">
+
+		<link rel="stylesheet" href="{{url_for('static', filename='styles/style.css')}}">
+		<link rel="stylesheet" href="{{url_for('static', filename='styles/good_frame.css')}}">
+		<link rel="stylesheet" href="{{url_for('static', filename='styles/modal_form.css')}}">
+		<link rel="stylesheet" href="{{url_for('static', filename='styles/error_window.css')}}">
+		<link rel="icon" href="{{url_for('static', filename='favicon.ico')}}" type="image/x-icon">
+		<script src="{{url_for('static',filename='scripts/error_message.js')}}"></script>
+		<script src="{{url_for('static',filename='scripts/base_scripts/escape.js')}}"></script>
+		<script src="{{url_for('static',filename='scripts/goods_scripts.js')}}"></script>
+		<title>MStore — Контакты</title>
+	</head>
+	<body>
+		<header>
+			{% include 'parts/header_content.html' %}
+		</header>
+		
+		<main class="content-wrapper data-grid-block">
+			<h1>Контакты</h1>
+			<p>	Юридический адрес: <strong>ул. Пушкина дом Калатушкина.</strong></p>
+			<p>	Почтовый индекс: <strong>115870095</strong></p>
+			<p>	Тел. службы поддержки: <strong>+7 728 419-07-77</strong></p>
+			<p>	Эл. почта поддержки: <a>tochnoneobmanem@mail.ru</a></p>
+		</main>
+		<footer>
+			{% include 'parts/footer_content.html' %}
+		</footer>
+	</body>
+</html>

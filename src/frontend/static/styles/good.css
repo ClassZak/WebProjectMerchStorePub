@@ -1,0 +1,50 @@
+.info-block p{
+	overflow-wrap: break-word;
+}
+
+@media (max-width: 300px) {
+	*{
+		font-size: 0.9em;
+	}
+	.header-content{
+		margin: 0;
+	}
+}
+
+
+@media (max-width: 500px) {
+	.header-content{
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+}
+
+
+.card-title {
+	margin: 5px 0;
+	font-size: 1.1rem;
+	font-weight: bold;
+}
+
+.card-price {
+	color: var(--accent-gold);
+	font-weight: bold;
+	margin: 5px 0;
+}
+.card-desc {
+	font-size: 0.9rem;
+	margin: 5px 0;
+	color: #ccc;
+	overflow-wrap: break-word;
+}
+.card-bottom {
+	margin-top: auto; /* Прижимаем к низу */
+	padding-top: 10px;
+	justify-content: end;
+}
+.card-manufacturer,
+.card-date {
+	font-size: 0.9rem;
+	margin: 3px 0;
+	color: #aaa;
+}
