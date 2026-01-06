@@ -6,7 +6,6 @@ MStore - это учебный проект онлайн магазина мер
 
 ## 🖼️ Внешний вид сайта
 ![Image alt](https://github.com/ClassZak/WebProjectMerchStorePub/blob/master/screenshot1.png)
-![Image alt](https://github.com/ClassZak/WebProjectMerchStorePub/blob/master/screenshot2.png)
 ![Image alt](https://github.com/ClassZak/WebProjectMerchStorePub/blob/master/screenshot3.png)
 
 ### ❌ Пример появления сообщения об ошибке
